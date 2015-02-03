@@ -3,20 +3,25 @@
 #include "rdjpeg.h"
 
 #define BINS 4
+#define BINS_STEP (256 / BINS)
 
 uint idx(uint val)
 {
-    return ((val >> BINS) / BINS);
-    /*while (val > BINS) {
-        val /= BINS;
+    int i = 0;
+    int cmp = BINS_STEP;
+    while (val >= cmp && i < BINS) {
+        i++;
+        cmp += BINS_STEP;
     }
-    return val;*/
+    return i;
 }
 
 int main(int argc, char *argv[])
 {
     int n;
-
+    int i;
+    for (i = 0; i < 256; i++)
+        printf("%d : %d\n", i, idx(i));
     for(n = 1; n < argc; n++) {
         CIMAGE cim;
         read_cimage(argv[n], &cim);
