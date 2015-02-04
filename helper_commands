@@ -1,0 +1,7 @@
+./apply_ann train/svm/color.svm http://mrim.imag.fr/GINF53C4/PROJET/train/ann/aeroplane.ann > train/svm/color_aeroplane.svm
+
+svm-train -w+1 19 -b 1 train/svm/color_aeroplane.svm model/color_aeroplane.model
+
+svm-predict -b 1 val/svm/color.svm model/color_aeroplane.model out/color_aeroplane.out
+
+awk '{print $1}' train/svm/color_aeroplane.svm | sort | uniq -c
