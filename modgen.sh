@@ -4,5 +4,7 @@ declare -a c=("aeroplane" "bicycle" "bird" "boat" "bottle" "bus" "car" "cat" "ch
 
 for concept in "${c[@]}"
 do
-    ./apply_ann train/svm/color.svm http://mrim.imag.fr/GINF53C4/PROJET/train/ann/${concept}.ann > train/svm/color_${concept}.svm
+    svm-train -w+1 19 -b 1 train/svm/color_${concept}.svm model/color_${concept}.model
+
+    svm-predict -b 1 val/svm/color.svm model/color_${concept}.model out/color_${concept}.out
 done

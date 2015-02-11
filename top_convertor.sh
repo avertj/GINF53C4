@@ -4,5 +4,5 @@ declare -a c=("aeroplane" "bicycle" "bird" "boat" "bottle" "bus" "car" "cat" "ch
 
 for concept in "${c[@]}"
 do
-    ./apply_ann train/svm/color.svm http://mrim.imag.fr/GINF53C4/PROJET/train/ann/${concept}.ann > train/svm/color_${concept}.svm
+    ./top_convertor ${concept} out/color_${concept}.out http://mrim.imag.fr/GINF53C4/PROJET/train/ann/${concept}.ann > top/color_${concept}.top
 done
