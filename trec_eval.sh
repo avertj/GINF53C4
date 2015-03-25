@@ -2,7 +2,9 @@
 
 declare -a c=("aeroplane" "bicycle" "bird" "boat" "bottle" "bus" "car" "cat" "chair" "cow" "diningtable" "dog" "horse" "motorbike" "person" "pottedplant" "sheep" "sofa" "train" "tvmonitor")
 
+mkdir -p trec
+
 for concept in "${c[@]}"
 do
-    ./top_convertor ${concept} out/color_${concept}.out http://mrim.imag.fr/GINF53C4/PROJET/val/ann/${concept}.ann > top/color_${concept}.top
+    ./trec_eval.9.0/trec_eval rel/${concept}.rel top/color_${concept}.top > trec/${concept}.trec
 done
